@@ -5,62 +5,25 @@ import PropTypes from 'prop-types';
 
 const modalRoot = document.querySelector('#modal-root');
 
-// class Modal extends Component {
-//   static propTypes = {
-//     onClose: PropTypes.func.isRequired,
-//   };
-//   componentDidMount() {
-//     window.addEventListener('keydown', this.handleKeydownCloseModal);
-//   }
-//   componentWillUnmount() {
-//     window.removeEventListener('keydown', this.handleKeydownCloseModal);
-//   }
-
-//   handleOverlayCloseModal = e => {
-//     const { onClose } = this.props;
-//     if (e.currentTarget === e.target) {
-//       onClose();
-//     }
-//   };
-
-//   handleKeydownCloseModal = e => {
-//     const { onClose } = this.props;
-//     if (e.code === 'Escape') {
-//       onClose();
-//     }
-//   };
-
-//   render() {
-//     return createPortal(
-//       <Overlay onClick={this.handleOverlayCloseModal}>
-//         <ModalContainer>{this.props.children}</ModalContainer>
-//       </Overlay>,
-//       modalRoot
-//     );
-//   }
-// }
-
 function Modal({ onClose, children }) {
   
-  const handleKeydownCloseModal = e => {
-    if (e.code === 'Escape') {
-      onClose();
-    }
-  };
-  
   useEffect(() => {
+    const handleKeydownCloseModal = e => {
+      if (e.code === 'Escape') {
+        onClose();
+      }
+    };
     window.addEventListener('keydown', handleKeydownCloseModal);
     return () => {
       window.removeEventListener('keydown', handleKeydownCloseModal);
     };
-  }, []);
+  }, [onClose]);
 
   const handleOverlayCloseModal = e => {
     if (e.currentTarget === e.target) {
       onClose();
     }
   };
-
 
   return createPortal(
     <Overlay onClick={handleOverlayCloseModal}>
@@ -70,8 +33,8 @@ function Modal({ onClose, children }) {
   );
 }
 Modal.propTypes = {
-      onClose: PropTypes.func.isRequired,
-      children:PropTypes.any,
-    };
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.any,
+};
 
 export default Modal;

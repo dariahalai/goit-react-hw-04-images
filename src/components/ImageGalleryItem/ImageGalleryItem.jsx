@@ -6,13 +6,9 @@ import PropTypes from 'prop-types';
 function ImageGalleryItem({ id, webformatURL, largeImageURL, tags }) {
 
   const [showModal, setShowModal] = useState(false);
-
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
-
-  return (
-    <GalleryItem onClick={toggleModal}>
+  
+   return (
+    <GalleryItem onClick={()=>setShowModal(true)}>
       <GalleryItemImage
         id={id}
         src={webformatURL}
@@ -20,7 +16,7 @@ function ImageGalleryItem({ id, webformatURL, largeImageURL, tags }) {
         large={largeImageURL}
       />
       {showModal && (
-        <Modal onClose={toggleModal}>
+        <Modal onClose={()=>setShowModal(false)}>
           <img src={largeImageURL} alt={tags} />
         </Modal>
       )}

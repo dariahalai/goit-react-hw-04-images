@@ -8,9 +8,10 @@ import { AppContainer } from 'App.styled';
 
 export function App() {
   const [query,setQuery] = useState('');
+  
  
   const handleFormSubmit = query => {
-    setQuery( query );
+    setQuery(query);
   };
     return (
       <AppContainer>
