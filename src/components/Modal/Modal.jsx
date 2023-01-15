@@ -21,6 +21,7 @@ function Modal({ onClose, children }) {
 
   const handleOverlayCloseModal = e => {
     if (e.currentTarget === e.target) {
+      console.log('yay')
       onClose();
     }
   };

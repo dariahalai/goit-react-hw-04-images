@@ -16,7 +16,7 @@ export function App() {
     return (
       <AppContainer>
         <Searchbar onSubmit={handleFormSubmit} />
-        <ImageGallery query={query} />
+        <ImageGallery query={query}/>
         <ToastContainer autoClose={3000} theme="colored"/>
       </AppContainer>
     );
